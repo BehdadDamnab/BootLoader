@@ -1,4 +1,4 @@
-idf_component_register(SRCS "bootloader_start.c" "hooks.c"
+idf_component_register(SRCS "bootloader_start.c" "bootloader_hooks.c" "boot_mode.c"
                     REQUIRES bootloader bootloader_support)
 
 # Use the default linker scripts
