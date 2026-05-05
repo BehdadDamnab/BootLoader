@@ -1,15 +1,14 @@
 #include "esp_log.h"
 
-#include "soc/rtc_cntl_reg.h"
 #include "soc/efuse_reg.h"
-
 #include "esp_chip_info.h"
+#include "esp_cpu.h"
 
 
 #define BOOTLOADER_VERSION "2.0.0"
 
 static uint32_t boot_start_time;
-static uint32_t boot_counter = 0;
+
 
 void bootloader_hooks_include(void){
 }
@@ -19,20 +18,17 @@ void bootloader_before_init(void) {
     /* Keep in my mind that a lot of functions cannot be called from here
      * as system initialization has not been performed yet, including
      * BSS, SPI flash, or memory protection. */
+    
     ESP_LOGI("HOOK", "This hook is called BEFORE bootloader initialization");
 
-    // boot_start_time = esp_rom_get_time();
-
-    // boot_counter = READ_PERI_REG(RTC_CNTL_STORE1_REG);
-    // boot_counter++;
-    // WRITE_PERI_REG(RTC_CNTL_STORE1_REG, boot_counter);
+    boot_start_time = esp_cpu_get_cycle_count();
 
     
     esp_rom_printf("\n");
     esp_rom_printf("╔════════════════════════════════════════╗\n");
     esp_rom_printf("║   SMART BOOTLOADER v%s              ║\n", BOOTLOADER_VERSION);
     esp_rom_printf("╚════════════════════════════════════════╝\n");
-    // esp_rom_printf("Boot #%d\n", boot_counter);
+
 
     // Get chip info
     esp_chip_info_t chip_info;
@@ -53,5 +49,11 @@ void bootloader_before_init(void) {
 }
 
 void bootloader_after_init(void) {
-    ESP_LOGI("HOOK", "This hook is called AFTER bootloader initialization");
+
+    uint32_t init_time = esp_cpu_get_cycle_count() - boot_start_time;
+    uint32_t init_time_us = init_time / 160;  // cycles / (160 MHz) = microseconds
+    esp_rom_printf("Hardware init: %lu us\n", init_time_us);
+
+    ESP_LOGI("HOOK", "This hook is called AFTER bootloader initialization");    
+
 }
