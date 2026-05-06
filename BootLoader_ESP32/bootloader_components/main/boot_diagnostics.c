@@ -1,20 +1,7 @@
-// #include "bootloader_flash.h"
-
-// #include "bootloader_utility.h"
-// #include "esp_image_format.h"
-// #include "esp_efuse.h"
-
-// #include "boot_diagnostics.h"
-// #include "boot_mode.h"
-
-
 #include "esp_rom_sys.h"
 #include "bootloader_utility.h"
-
 #include "esp32/rom/spi_flash.h"
 #include "soc/rtc_cntl_reg.h"
-
-
 
 
 void run_diagnostics(const bootloader_state_t *bs)

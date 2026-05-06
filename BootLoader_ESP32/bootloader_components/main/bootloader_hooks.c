@@ -1,5 +1,4 @@
 #include "esp_log.h"
-
 #include "soc/efuse_reg.h"
 #include "esp_chip_info.h"
 #include "esp_cpu.h"
