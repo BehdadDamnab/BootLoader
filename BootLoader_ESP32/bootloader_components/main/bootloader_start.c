@@ -30,7 +30,7 @@ void __attribute__((noreturn)) call_start_cpu0(void)
     
     bootloader_before_init();
 
-    ESP_LOGI("Test", "This is just for testing purposes.");
+    // ESP_LOGI("Test", "This is just for testing purposes.");
 
     // 1. Hardware initialization
     if (bootloader_init() != ESP_OK) {

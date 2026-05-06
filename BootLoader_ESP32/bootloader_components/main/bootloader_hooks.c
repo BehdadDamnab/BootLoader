@@ -5,7 +5,7 @@
 #include "esp_cpu.h"
 
 
-#define BOOTLOADER_VERSION "2.1.0"
+#define BOOTLOADER_VERSION "2.2.0"
 
 static uint32_t boot_start_time;
 
