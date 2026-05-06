@@ -11,6 +11,7 @@
 #include "bootloader_common.h"
 #include "bootloader_hooks.h"
 #include "boot_mode.h"
+#include "boot_diagnostics.h"
 
 
 static const char *TAG = "boot";
@@ -85,6 +86,20 @@ static int selected_boot_partition(const bootloader_state_t *bs)
     int boot_index = bootloader_utility_get_selected_boot_partition(bs);
 
     boot_mode_t mode = detect_boot_mode();
+
+    switch (mode) 
+    {        
+        case BOOT_MODE_DIAGNOSTICS:
+            // Run diagnostics
+            run_diagnostics(bs);
+            break;
+            
+        case BOOT_MODE_NORMAL:
+        default:
+            // Normal boot - use selected partition
+            break;
+    }
+
 
     if (boot_index == INVALID_INDEX) {
         return boot_index; // Unrecoverable failure (not due to corrupt ota data or bad partition contents)
