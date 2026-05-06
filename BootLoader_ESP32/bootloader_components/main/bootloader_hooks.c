@@ -25,9 +25,9 @@ void bootloader_before_init(void) {
 
     
     esp_rom_printf("\n");
-    esp_rom_printf("╔════════════════════════════════════════╗\n");
-    esp_rom_printf("║   SMART BOOTLOADER v%s              ║\n", BOOTLOADER_VERSION);
-    esp_rom_printf("╚════════════════════════════════════════╝\n");
+    esp_rom_printf("==========================================\n");
+    esp_rom_printf("             SMART BOOTLOADER v%s         \n", BOOTLOADER_VERSION);
+    esp_rom_printf("==========================================\n");
 
 
     // Get chip info
