@@ -799,12 +799,3 @@ This project is licensed under the Apache License 2.0 - see the LICENSE file for
 
 **Behdad Damnab**
 - GitHub: [@BehdadDamnab](https://github.com/BehdadDamnab)
-
-## 🙏 Acknowledgments
-
-- Espressif Systems for ESP-IDF framework and comprehensive documentation
-- ESP32 community for support and examples
-
----
-
-**Note**: This is an educational project demonstrating ESP32 bootloader customization. Test thoroughly before using in production environments.
